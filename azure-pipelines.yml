@@ -4,9 +4,9 @@ trigger:
     - master
     - foo
     - bar
-paths:
-    include:
-      - azure-pipeline/*
+ paths:
+  include:
+    - azure-pipeline/*
 variables:
  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 stages:
