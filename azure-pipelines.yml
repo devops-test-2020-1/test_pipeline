@@ -18,7 +18,7 @@ stages:
     steps:
      - checkout: self
       persistCredentials: "true"
-     - script: "git config --global user.name 'Azure DevOps' && git config --global user.email 'undefined@undefined.undef'"
+     - script: "git config --global user.name 'devops-test-2020-1' && git config --global user.email 'devops.test.2020.1@gmail.com'"
       displayName: Set git config
      - script: "npm i"
        displayName: npm i
