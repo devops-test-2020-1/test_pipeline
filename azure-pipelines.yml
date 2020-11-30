@@ -4,8 +4,9 @@ trigger:
     - master
     - foo
     - bar
-pool:
-  vmImage: 'ubuntu-latest'    
+paths:
+    include:
+      - azure-pipeline/*
 variables:
  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 stages:
@@ -15,9 +16,7 @@ stages:
   jobs:
    - job: CheckChanges
       displayName: 'Check changes'
-    pool:
-    vmImage: $(vmImageName)
-    steps:
+      steps:
      - checkout: self
            persistCredentials: "true"
      - script: "git config --global user.name 'devops-test-2020-1' && git config --global user.email 'devops.test.2020.1@gmail.com'"
