@@ -14,7 +14,7 @@ stages:
   displayName: Bump Versions
   jobs:
    - job: CheckChanges
-   displayName: 'Check changes'
+      displayName: 'Check changes'
     pool:
     vmImage: $(vmImageName)
     steps:
