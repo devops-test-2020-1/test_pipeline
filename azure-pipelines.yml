@@ -4,6 +4,8 @@ trigger:
     - master
     - foo
     - bar
+pool:
+  vmImage: 'ubuntu-latest'    
 variables:
  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 stages:
