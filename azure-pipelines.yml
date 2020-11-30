@@ -14,19 +14,19 @@ stages:
   displayName: Bump Versions
   jobs:
    - job: CheckChanges
-      displayName: 'Check changes'
-      pool:
-       vmImage: $(vmImageName)
-      steps:
-       - checkout: self
-        persistCredentials: "true"
-       - script: "git config --global user.name 'devops-test-2020-1' && git config --global user.email 'devops.test.2020.1@gmail.com'"
-        displayName: Set git config
-       - script: "npm i"
-        displayName: npm i
-       - script: "npm run bump-versions"
-        displayName: Bump versions
-        name: check_changes
+   displayName: 'Check changes'
+    pool:
+    vmImage: $(vmImageName)
+    steps:
+     - checkout: self
+           persistCredentials: "true"
+     - script: "git config --global user.name 'devops-test-2020-1' && git config --global user.email 'devops.test.2020.1@gmail.com'"
+      displayName: Set git config
+     - script: "npm i"
+           displayName: npm i
+     - script: "npm run bump-versions"
+           displayName: Bump versions
+           name: check_changes
    - job: BumpVersions
     displayName: 'Only when package.json changed'
     dependsOn: CheckChanges 
