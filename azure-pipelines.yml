@@ -14,19 +14,19 @@ stages:
   displayName: Bump Versions
   jobs:
    - job: CheckChanges
-    displayName: 'Check changes'
-    pool:
-     vmImage: $(vmImageName)
-    steps:
-     - checkout: self
-      persistCredentials: "true"
-     - script: "git config --global user.name 'devops-test-2020-1' && git config --global user.email 'devops.test.2020.1@gmail.com'"
-      displayName: Set git config
-     - script: "npm i"
-       displayName: npm i
-     - script: "npm run bump-versions"
-       displayName: Bump versions
-       name: check_changes
+      displayName: 'Check changes'
+      pool:
+       vmImage: $(vmImageName)
+      steps:
+       - checkout: self
+        persistCredentials: "true"
+       - script: "git config --global user.name 'devops-test-2020-1' && git config --global user.email 'devops.test.2020.1@gmail.com'"
+        displayName: Set git config
+       - script: "npm i"
+        displayName: npm i
+       - script: "npm run bump-versions"
+        displayName: Bump versions
+        name: check_changes
    - job: BumpVersions
     displayName: 'Only when package.json changed'
     dependsOn: CheckChanges 
@@ -36,8 +36,8 @@ stages:
         vmImage: $(vmImageName)
     steps:
      - script: "git add frontend/package.json frontend/package-lock.json backend-service/package.json backend-service/package-lock.json acl-service/package.json acl-service/package-lock.json file-service/package.json file-service/package-lock.json datapoint-service/package.json datapoint-service/package-lock.json"
-      displayName: git add package.json
+       displayName: git add package.json
      - script: "git commit -m 'bump version'"
-      displayName: commit version
+       displayName: commit version
      - script: "git push origin HEAD:$(Build.SourceBranchName)"
-      displayName: Git push
+       displayName: Git push
