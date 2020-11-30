@@ -17,13 +17,13 @@ stages:
    - job: CheckChanges
       displayName: 'Check changes'
       steps:
-     - checkout: self
+       - checkout: self
            persistCredentials: "true"
-     - script: "git config --global user.name 'devops-test-2020-1' && git config --global user.email 'devops.test.2020.1@gmail.com'"
-      displayName: Set git config
-     - script: "npm i"
+       - script: "git config --global user.name 'devops-test-2020-1' && git config --global user.email 'devops.test.2020.1@gmail.com'"
+           displayName: Set git config
+       - script: "npm i"
            displayName: npm i
-     - script: "npm run bump-versions"
+       - script: "npm run bump-versions"
            displayName: Bump versions
            name: check_changes
    - job: BumpVersions
@@ -31,8 +31,6 @@ stages:
     dependsOn: CheckChanges 
     condition: eq(dependencies.CheckChanges.outputs['check_changes.SOURCE_CODE_CHANGED'], 'true')
     continueOnError: true
-    pool:
-        vmImage: $(vmImageName)
     steps:
      - script: "git add frontend/package.json frontend/package-lock.json backend-service/package.json backend-service/package-lock.json acl-service/package.json acl-service/package-lock.json file-service/package.json file-service/package-lock.json datapoint-service/package.json datapoint-service/package-lock.json"
        displayName: git add package.json
