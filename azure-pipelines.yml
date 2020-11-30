@@ -1,3 +1,9 @@
+trigger:
+ branches:
+  include:
+    - master
+    - foo
+    - bar
 variables:
 isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 stages:
